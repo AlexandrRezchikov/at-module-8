@@ -50,9 +50,9 @@ public class FiltersForSearchPage extends BasePage {
         waitTextToBePresentInElement(buttonNumberOfTours);
         AssertsElements.checkVisible(buttonNumberOfTours);
         String numberOfTours = buttonNumberOfTours.getText();
-        System.out.println(numberOfTours);
+//        System.out.println(numberOfTours);
         int numberOfCard = cardOfTour.size();
-        System.out.println("Карточек туров на странице " + numberOfCard);
+//        System.out.println("Карточек туров на странице " + numberOfCard);
         AssertsElements.equalsInteger(numberOfCard, Regex.regexForNumberOfTours(numberOfTours));
         return this;
     }
