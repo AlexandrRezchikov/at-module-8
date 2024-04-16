@@ -21,13 +21,15 @@ import static org.example.framework.config.Config.HOLD_BROWSER_OPEN;
 import static org.example.framework.config.Config.URL;
 import static org.example.framework.config.Config.CLEAR_COOKIES_AND_STORAGE;
 
+//Разбить на классы по страницам
 public class Steps extends AllPages {
 
-    public WebDriver driver;
+//    public WebDriver driver;
 
+//    Вынести в тест раннер
     @BeforeStory
     public void setUp() {
-        driver = DriverActions.getDriver();
+//        driver = DriverActions.getDriver();
         AllPages.init();
     }
 
@@ -56,7 +58,8 @@ public class Steps extends AllPages {
         basePage.open(URL);
     }
 
-    @When("когда пользователь вводит регион $nameRegion и выбирает параметры для посика тура")
+// когда - лишнее
+    @When("пользователь вводит регион $nameRegion и выбирает параметры для поиска тура")
     public void enteringParametersTours(String nameRegion) {
         mainPage.selectingRegion(nameRegion)
                 .selectingViewRecreation()

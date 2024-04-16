@@ -28,6 +28,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <suiteXml>testng.xml</suiteXml>
+        <jbehave-maven-plugin></jbehave-maven-plugin>
     </properties>
 
     <dependencies>
@@ -98,12 +99,12 @@
                     <argLine>
                         -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/1.9.21/aspectjweaver-1.9.21.jar"
                     </argLine>
-                    <systemProperties>
+                    <systemPropertyVariables>
                         <property>
                             <name>allure.results.directory</name>
                             <value>${project.build.directory}/allure-results</value>
                         </property>
-                    </systemProperties>
+                    </systemPropertyVariables>
                     <suiteXmlFiles>
                         <suiteXmlFile>src/test/resources/${suiteXml}</suiteXmlFile>
                     </suiteXmlFiles>

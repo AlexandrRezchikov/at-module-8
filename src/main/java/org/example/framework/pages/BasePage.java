@@ -30,6 +30,7 @@ public class BasePage {
         return element;
     }
 
+//    hardcode в общем классе
     protected WebElement waitTextToBePresentInElement(WebElement element) {
         new WebDriverWait(driver, Duration.ofSeconds(EXPLICIT_WAIT))
                 .until(ExpectedConditions.textToBePresentInElement(element, "Найден"));

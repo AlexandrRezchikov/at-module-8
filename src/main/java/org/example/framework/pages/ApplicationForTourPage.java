@@ -3,6 +3,7 @@ package org.example.framework.pages;
 import io.qameta.allure.Step;
 import org.example.framework.asserts.AssertsElements;
 import org.example.framework.common.DriverActions;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.testng.Assert;
@@ -30,6 +31,7 @@ public class ApplicationForTourPage extends BasePage {
     private WebElement buttonSendRequest;
 
     @FindBy(xpath = "//span[contains(., 'Введите корректный номер телефона')]")
+//    enum errors - class errors
     private WebElement errorMessageValidatingPhoneNumber;
 
     @FindBy(xpath = ".//span[contains(., 'Вернуться')]")
