@@ -1,9 +1,10 @@
 package org.example.framework.steps;
 
+import org.example.framework.pages.AllPages;
 import org.jbehave.core.annotations.Then;
 import org.jbehave.core.annotations.When;
 
-public class FiltersForSearchPageStepDefinitions extends BaseStepDefinitions{
+public class FiltersForSearchPageSteps extends AllPages {
 
     @Then("пользователь видит на странице количество найденных туров")
     public void userSeesNumberOfToursFound() {
