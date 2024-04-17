@@ -1,9 +1,10 @@
 package org.example.framework.steps;
 
+import org.example.framework.pages.AllPages;
 import org.jbehave.core.annotations.Then;
 import org.jbehave.core.annotations.When;
 
-public class ApplicationForTourPageStepDefinitions extends BaseStepDefinitions {
+public class ApplicationForTourPageSteps extends AllPages {
 
     @Then("пользователь переходит на страницу с формой для заполнения данных")
     public void pageApplicationForTour() {

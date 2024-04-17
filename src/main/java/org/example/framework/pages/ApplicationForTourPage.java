@@ -29,8 +29,8 @@ public class ApplicationForTourPage extends BasePage {
     @FindBy(xpath = "//button[@name='submit']")
     private WebElement buttonSendRequest;
 
-    @FindBy(xpath = "//span[contains(., 'Введите корректный номер телефона')]")
-    private WebElement errorMessageValidatingPhoneNumber;
+    @FindBy(css = ".as-input__message")
+    private WebElement errorMessageValidating;
 
     @FindBy(xpath = ".//span[contains(., 'Вернуться')]")
     private WebElement buttonGoToBack;
@@ -83,8 +83,8 @@ public class ApplicationForTourPage extends BasePage {
 
     @Step("Проверка ошибки")
     public ApplicationForTourPage checkingErrorMessage() {
-        AssertsElements.checkVisible(errorMessageValidatingPhoneNumber);
-        System.out.println("Текст ошибки: " + errorMessageValidatingPhoneNumber.getText());
+        AssertsElements.checkVisible(errorMessageValidating);
+        System.out.println("Текст ошибки: " + errorMessageValidating.getText());
         return this;
     }
 }

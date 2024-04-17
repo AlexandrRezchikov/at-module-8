@@ -1,10 +1,11 @@
 package org.example.framework.steps;
 
 import org.example.framework.common.DriverActions;
+import org.example.framework.pages.AllPages;
 import org.jbehave.core.annotations.Then;
 import org.jbehave.core.annotations.When;
 
-public class InfoOfTourPageStepDefinitions extends BaseStepDefinitions {
+public class InfoOfTourPageSteps extends AllPages {
 
     @Then("пользователь переходит на страницу тура")
     public void pageInfoOfTour() {

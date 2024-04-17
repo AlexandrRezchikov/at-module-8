@@ -1,9 +1,12 @@
 package org.example.framework.steps;
 
+import org.example.framework.pages.AllPages;
 import org.jbehave.core.annotations.Given;
 import org.jbehave.core.annotations.When;
 
-public class MainPageStepDefinitions extends BaseStepDefinitions {
+import static org.example.framework.config.Config.URL;
+
+public class MainPageSteps extends AllPages {
 
     @Given("пользователь находится на главной странице")
     public void userIsOnHomePage() {
