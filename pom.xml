@@ -127,7 +127,7 @@
                 <executions>
                     <execution>
                         <id>copy-resources</id>
-                        <phase>compile</phase>
+                        <phase>test</phase>
                         <goals>
                             <goal>copy-resources</goal>
                         </goals>
@@ -154,6 +154,33 @@
                     <reportVersion>2.14.0</reportVersion>
                     <outputDirectory>${basedir}/target/allure-reports/</outputDirectory>
                 </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.jbehave</groupId>
+                <artifactId>jbehave-maven-plugin</artifactId>
+                <version>5.2.0</version>
+                <executions>
+                    <execution>
+                        <id>embeddable-stories</id>
+                        <phase>integration-test</phase>
+                        <configuration>
+                            <includes>
+                                <include>**/*JBehaveTestRunner.java</include>
+                            </includes>
+                            <ignoreFailureInStories>true</ignoreFailureInStories>
+                            <ignoreFailureInView>true</ignoreFailureInView>
+                            <systemProperties>
+                                <property>
+                                    <name>java.awt.headless</name>
+                                    <value>true</value>
+                                </property>
+                            </systemProperties>
+                        </configuration>
+                        <goals>
+                            <goal>run-stories-as-embeddables</goal>
+                        </goals>
+                    </execution>
+                </executions>
             </plugin>
         </plugins>
     </build>

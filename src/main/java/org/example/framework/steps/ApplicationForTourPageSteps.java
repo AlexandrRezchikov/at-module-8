@@ -1,6 +1,7 @@
 package org.example.framework.steps;
 
 import org.example.framework.pages.AllPages;
+import org.example.framework.pages.ApplicationForTourPage;
 import org.jbehave.core.annotations.Then;
 import org.jbehave.core.annotations.When;
 
@@ -38,6 +39,9 @@ public class ApplicationForTourPageSteps extends AllPages {
 
     @Then("пользователь видит сообщение что заявка отправлена")
     public void checkingSend() {
+        applicationForTourPage.textError(ApplicationForTourPage.ErrorMessage.ERROR_PHONE_NUMBER);
+        applicationForTourPage.textError(ApplicationForTourPage.ErrorMessage.ERROR_DATE);
+        applicationForTourPage.textError(ApplicationForTourPage.ErrorMessage.ERROR_EMAIL);
         applicationForTourPage.checkingErrorMessage();
     }
 }
