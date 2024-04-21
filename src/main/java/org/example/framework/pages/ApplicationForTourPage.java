@@ -3,8 +3,7 @@ package org.example.framework.pages;
 import io.qameta.allure.Step;
 import org.example.framework.asserts.AssertsElements;
 import org.example.framework.common.DriverActions;
-import org.openqa.selenium.By;
-import org.openqa.selenium.NoSuchElementException;
+import org.example.framework.checker.ErrorMessageChecker;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.testng.Assert;
@@ -87,29 +86,9 @@ public class ApplicationForTourPage extends BasePage {
     public ApplicationForTourPage checkingErrorMessage() {
         AssertsElements.checkVisible(errorMessageValidating);
         System.out.println("Текст ошибки: " + errorMessageValidating.getText());
+        ErrorMessageChecker.textError(ErrorMessageChecker.ErrorMessage.ERROR_PHONE_NUMBER);
+        ErrorMessageChecker.textError(ErrorMessageChecker.ErrorMessage.ERROR_DATE);
+        ErrorMessageChecker.textError(ErrorMessageChecker.ErrorMessage.ERROR_EMAIL);
         return this;
-    }
-
-    public void textError(ErrorMessage errorMessage) throws NoSuchElementException {
-        String text = errorMessage.getText();
-        if (DriverActions.getDriver().findElements(By.cssSelector(String.format(".as-input__message", text))).isEmpty()) {
-            throw new NoSuchElementException("Ошибка: Элемент с текстом " + text + " не найден!");
-        }
-    }
-
-    public enum ErrorMessage {
-        ERROR_DATE("Поле обязательно для заполнения"),
-        ERROR_PHONE_NUMBER("Введите корректный номер телефона"),
-        ERROR_EMAIL("Введите корректный e-mail");
-
-        private final String text;
-
-        ErrorMessage(String text) {
-            this.text = text;
-        }
-
-        public String getText(){
-            return this.text;
-        }
     }
 }

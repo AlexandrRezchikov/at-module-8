@@ -39,9 +39,6 @@ public class ApplicationForTourPageSteps extends AllPages {
 
     @Then("пользователь видит сообщение что заявка отправлена")
     public void checkingSend() {
-        applicationForTourPage.textError(ApplicationForTourPage.ErrorMessage.ERROR_PHONE_NUMBER);
-        applicationForTourPage.textError(ApplicationForTourPage.ErrorMessage.ERROR_DATE);
-        applicationForTourPage.textError(ApplicationForTourPage.ErrorMessage.ERROR_EMAIL);
         applicationForTourPage.checkingErrorMessage();
     }
 }
