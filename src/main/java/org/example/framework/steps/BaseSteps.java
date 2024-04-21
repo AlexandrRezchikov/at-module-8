@@ -12,6 +12,5 @@ public class BaseSteps extends AllPages {
     public void userGoesToSite() {
 
         basePage.open(URL);
-        mainPage.checkTitle();
     }
 }

@@ -1,7 +1,6 @@
 package org.example.framework.steps;
 
 import org.example.framework.pages.AllPages;
-import org.example.framework.pages.ApplicationForTourPage;
 import org.jbehave.core.annotations.Then;
 import org.jbehave.core.annotations.When;
 

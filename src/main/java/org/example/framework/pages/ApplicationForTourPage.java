@@ -3,7 +3,6 @@ package org.example.framework.pages;
 import io.qameta.allure.Step;
 import org.example.framework.asserts.AssertsElements;
 import org.example.framework.common.DriverActions;
-import org.example.framework.checker.ErrorMessageChecker;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.testng.Assert;
@@ -86,9 +85,8 @@ public class ApplicationForTourPage extends BasePage {
     public ApplicationForTourPage checkingErrorMessage() {
         AssertsElements.checkVisible(errorMessageValidating);
         System.out.println("Текст ошибки: " + errorMessageValidating.getText());
-        ErrorMessageChecker.textError(ErrorMessageChecker.ErrorMessage.ERROR_PHONE_NUMBER);
-        ErrorMessageChecker.textError(ErrorMessageChecker.ErrorMessage.ERROR_DATE);
-        ErrorMessageChecker.textError(ErrorMessageChecker.ErrorMessage.ERROR_EMAIL);
+        AssertsElements.checkAllErrorMessages();
+        AssertsElements.checkColorErrorMessage(errorMessageValidating);
         return this;
     }
 }
