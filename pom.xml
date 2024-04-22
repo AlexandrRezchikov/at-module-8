@@ -183,6 +183,24 @@
                     </execution>
                 </executions>
             </plugin>
+            <plugin>
+                <groupId>org.jbehave</groupId>
+                <artifactId>jbehave-maven-plugin</artifactId>
+                <version>5.2.0</version>
+                <configuration>
+                    <scope>test</scope>
+                    <includes>
+                        <include>**/*JBehaveTestRunner.java</include>
+                    </includes>
+                    <systemProperties>
+                        <property>
+                            <name>meta.filter</name>
+                            <!--suppress UnresolvedMavenProperty -->
+                            <value>${meta.filter}</value>
+                        </property>
+                    </systemProperties>
+                </configuration>
+            </plugin>
         </plugins>
     </build>
 </project>

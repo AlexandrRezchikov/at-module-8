@@ -1,5 +1,5 @@
 Meta:
-@sendApplication
+@search
 
 Narrative:
 Поиск туров
