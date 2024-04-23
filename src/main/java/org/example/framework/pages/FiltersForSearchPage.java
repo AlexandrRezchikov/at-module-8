@@ -2,6 +2,7 @@ package org.example.framework.pages;
 
 import io.qameta.allure.Step;
 import org.example.framework.asserts.AssertsElements;
+import org.example.framework.common.CustomWait;
 import org.example.framework.common.DriverActions;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -46,8 +47,8 @@ public class FiltersForSearchPage extends BasePage {
 
     @Step("Проверка количества найденных туров")
     public FiltersForSearchPage checkingCountTours() {
-        waitElementToBeClickable(buttonNumberOfTours);
-        waitTextToBePresentInElement(buttonNumberOfTours);
+        CustomWait.waitElementToBeClickable(buttonNumberOfTours);
+        CustomWait.waitTextToBePresentInElement(buttonNumberOfTours);
         AssertsElements.checkVisible(buttonNumberOfTours);
         String numberOfTours = buttonNumberOfTours.getText();
 //        System.out.println(numberOfTours);

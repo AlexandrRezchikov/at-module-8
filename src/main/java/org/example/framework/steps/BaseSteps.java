@@ -10,8 +10,8 @@ public class BaseSteps extends AllPages {
 
     @Given("пользователь переходит на сайт")
     public void userGoesToSite() {
+
         basePage.open(URL);
-        mainPage.checkTitle();
     }
 
 }

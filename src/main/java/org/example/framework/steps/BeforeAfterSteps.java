@@ -26,7 +26,7 @@ public class BeforeAfterSteps {
     public void afterScenario() {
         byte[] screenshot = ((TakesScreenshot) DriverActions.getDriver()).getScreenshotAs(OutputType.BYTES);
         Allure.addAttachment("Screenshot of the failed step", "image/png",
-            new ByteArrayInputStream(screenshot), ".png");
+                new ByteArrayInputStream(screenshot), ".png");
     }
 
     @AfterStory
@@ -41,5 +41,4 @@ public class BeforeAfterSteps {
             DriverActions.quit();
         }
     }
-
 }

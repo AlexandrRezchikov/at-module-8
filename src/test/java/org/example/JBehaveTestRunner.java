@@ -1,10 +1,13 @@
 package org.example;
 
 
-import org.example.framework.pages.AllPages;
-import org.example.framework.steps.*;
+import org.example.framework.steps.ApplicationForTourPageSteps;
+import org.example.framework.steps.BaseSteps;
+import org.example.framework.steps.BeforeAfterSteps;
+import org.example.framework.steps.FiltersForSearchPageSteps;
+import org.example.framework.steps.InfoOfTourPageSteps;
+import org.example.framework.steps.MainPageSteps;
 import org.jbehave.core.ConfigurableEmbedder;
-import org.jbehave.core.annotations.BeforeStory;
 import org.jbehave.core.configuration.Configuration;
 import org.jbehave.core.configuration.MostUsefulConfiguration;
 import org.jbehave.core.embedder.Embedder;
@@ -14,6 +17,7 @@ import org.jbehave.core.reporters.Format;
 import org.jbehave.core.reporters.StoryReporterBuilder;
 import org.jbehave.core.steps.InjectableStepsFactory;
 import org.jbehave.core.steps.InstanceStepsFactory;
+import org.openqa.selenium.WebDriver;
 import org.testng.annotations.Test;
 
 import java.util.List;
@@ -24,6 +28,7 @@ import static org.jbehave.core.io.CodeLocations.codeLocationFromClass;
 public class JBehaveTestRunner extends ConfigurableEmbedder {
 
     public Embedder embedder;
+    public WebDriver driver;
 
     @Override
     @Test
@@ -35,24 +40,29 @@ public class JBehaveTestRunner extends ConfigurableEmbedder {
 
     @Override
     public InjectableStepsFactory stepsFactory() {
-        return new InstanceStepsFactory(configuration(), new BaseSteps(), new ApplicationForTourPageSteps(),
-            new FiltersForSearchPageSteps(), new InfoOfTourPageSteps(), new MainPageSteps(), new BeforeAfterSteps());
+        return new InstanceStepsFactory(configuration(),
+                new BeforeAfterSteps(),
+                new BaseSteps(),
+                new MainPageSteps(),
+                new FiltersForSearchPageSteps(),
+                new ApplicationForTourPageSteps(),
+                new InfoOfTourPageSteps());
     }
 
     @Override
     public Configuration configuration() {
         return new MostUsefulConfiguration()
-            .useStoryLoader(new LoadFromClasspath(getClass().getClassLoader()))
-            .useStoryReporterBuilder(createStoryReporterBuilder());
+                .useStoryLoader(new LoadFromClasspath(getClass().getClassLoader()))
+                .useStoryReporterBuilder(createStoryReporterBuilder());
     }
 
     private StoryReporterBuilder createStoryReporterBuilder() {
         return new StoryReporterBuilder()
-            .withCodeLocation(codeLocationFromClass(this.getClass()))
-            .withDefaultFormats()
-            .withFormats(Format.CONSOLE, Format.HTML)
-            .withViewResources(properties())
-            .withFailureTrace(true);
+                .withCodeLocation(codeLocationFromClass(this.getClass()))
+                .withDefaultFormats()
+                .withFormats(Format.CONSOLE, Format.HTML)
+                .withViewResources(properties())
+                .withFailureTrace(true);
     }
 
     private Properties properties() {
@@ -63,6 +73,6 @@ public class JBehaveTestRunner extends ConfigurableEmbedder {
 
     public List<String> storyPaths() {
         return new StoryFinder().findPaths(codeLocationFromClass(this.getClass()),
-            "**/*.story", "");
+                "**/*.story", "");
     }
 }

@@ -29,17 +29,4 @@ public class BasePage {
                 .until(ExpectedConditions.visibilityOf(element));
         return element;
     }
-
-    protected WebElement waitTextToBePresentInElement(WebElement element) {
-        new WebDriverWait(driver, Duration.ofSeconds(EXPLICIT_WAIT))
-                .until(ExpectedConditions.textToBePresentInElement(element, "Найден"));
-        return element;
-    }
-
-    protected WebElement waitElementToBeClickable(WebElement element) {
-        new WebDriverWait(driver, Duration.ofSeconds(EXPLICIT_WAIT))
-                .until(ExpectedConditions.elementToBeClickable(element));
-        return element;
-    }
-
 }

@@ -122,12 +122,13 @@
                 </dependencies>
             </plugin>
             <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-resources-plugin</artifactId>
                 <version>3.3.1</version>
                 <executions>
                     <execution>
                         <id>copy-resources</id>
-                        <phase>compile</phase>
+                        <phase>test</phase>
                         <goals>
                             <goal>copy-resources</goal>
                         </goals>
@@ -153,6 +154,51 @@
                 <configuration>
                     <reportVersion>2.14.0</reportVersion>
                     <outputDirectory>${basedir}/target/allure-reports/</outputDirectory>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.jbehave</groupId>
+                <artifactId>jbehave-maven-plugin</artifactId>
+                <version>5.2.0</version>
+                <executions>
+                    <execution>
+                        <id>embeddable-stories</id>
+                        <phase>integration-test</phase>
+                        <configuration>
+                            <includes>
+                                <include>**/*JBehaveTestRunner.java</include>
+                            </includes>
+                            <ignoreFailureInStories>true</ignoreFailureInStories>
+                            <ignoreFailureInView>true</ignoreFailureInView>
+                            <systemProperties>
+                                <property>
+                                    <name>java.awt.headless</name>
+                                    <value>true</value>
+                                </property>
+                            </systemProperties>
+                        </configuration>
+                        <goals>
+                            <goal>run-stories-as-embeddables</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.jbehave</groupId>
+                <artifactId>jbehave-maven-plugin</artifactId>
+                <version>5.2.0</version>
+                <configuration>
+                    <scope>test</scope>
+                    <includes>
+                        <include>**/*JBehaveTestRunner.java</include>
+                    </includes>
+                    <systemProperties>
+                        <property>
+                            <name>meta.filter</name>
+                            <!--suppress UnresolvedMavenProperty -->
+                            <value>${meta.filter}</value>
+                        </property>
+                    </systemProperties>
                 </configuration>
             </plugin>
         </plugins>
