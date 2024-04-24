@@ -16,10 +16,12 @@ public class AssertsElements {
         Assert.assertEquals(integer, i, " количество не равно!");
     }
 
+//    Цвета в enum
     public static void checkColorErrorMessage(WebElement element) {
         Assert.assertEquals(element.getCssValue("color"), "rgba(230, 79, 79, 1)", "Цвет текста ошибки не красный!");
     }
 
+//    ErrorMessage как параметер
     public static void checkAllErrorMessages() {
         for (ErrorMessage errorMessage : ErrorMessage.values()) {
             try {
@@ -28,6 +30,7 @@ public class AssertsElements {
             } catch (NoSuchElementException e) {
                 System.out.println("[Элемент с текстом ошибки '" + errorMessage.getText() + "' не найден.]");
             } catch (AssertionError e) {
+                // в репорте не будет ошибки
                 System.out.println("[Проверка не прошла для ошибки: " + errorMessage.getText() + "]");
             }
         }
@@ -38,6 +41,7 @@ public class AssertsElements {
                 .findElement(By.cssSelector(String.format(".as-input__message", errorMessage.getText()))).getText());
     }
 
+//    все emum-ы в package enums
     public enum ErrorMessage {
         ERROR_DATE("Поле обязательно для заполнения"),
         ERROR_FULL_NAME("Поле обязательно для заполнения"),

@@ -1,5 +1,5 @@
 Meta:
-@search
+@order
 
 Narrative:
 Поиск туров

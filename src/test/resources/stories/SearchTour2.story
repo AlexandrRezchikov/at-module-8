@@ -1,5 +1,5 @@
 Meta:
-@search
+@search2
 
 Narrative:
 Поиск туров 2
