@@ -1,6 +1,7 @@
 package org.example;
 
 
+import io.qameta.allure.jbehave5.AllureJbehave5;
 import org.example.framework.steps.ApplicationForTourPageSteps;
 import org.example.framework.steps.BaseSteps;
 import org.example.framework.steps.BeforeAfterSteps;
@@ -52,7 +53,7 @@ public class JBehaveTestRunner extends ConfigurableEmbedder {
     public Configuration configuration() {
         return new MostUsefulConfiguration()
                 .useStoryLoader(new LoadFromClasspath(getClass().getClassLoader()))
-                .useStoryReporterBuilder(createStoryReporterBuilder());
+                .useStoryReporterBuilder(createStoryReporterBuilder().withReporters(new AllureJbehave5()));
     }
 
     private StoryReporterBuilder createStoryReporterBuilder() {

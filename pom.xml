@@ -14,11 +14,8 @@
     <properties>
         <aspectj.version>1.9.21.1</aspectj.version>
         <maven-surefire-plugin.version>3.2.5</maven-surefire-plugin.version>
-        <allure-testng.version>2.25.0</allure-testng.version>
-        <log4j-core.version>2.23.1</log4j-core.version>
-        <log4j-api.version>2.23.1</log4j-api.version>
-        <allure-java-commons.version>2.25.0</allure-java-commons.version>
-        <allure-commandline.version>2.27.0</allure-commandline.version>
+        <allure.version>2.27.0</allure.version>
+        <log4j.version>2.23.1</log4j.version>
         <aspectjweaver.version>1.9.21</aspectjweaver.version>
         <testng.version>7.4.0</testng.version>
         <selenium-java.version>4.19.1</selenium-java.version>
@@ -59,27 +56,27 @@
         <dependency>
             <groupId>org.apache.logging.log4j</groupId>
             <artifactId>log4j-core</artifactId>
-            <version>${log4j-core.version}</version>
+            <version>${log4j.version}</version>
         </dependency>
         <dependency>
             <groupId>org.apache.logging.log4j</groupId>
             <artifactId>log4j-api</artifactId>
-            <version>${log4j-api.version}</version>
+            <version>${log4j.version}</version>
         </dependency>
         <dependency>
             <groupId>io.qameta.allure</groupId>
             <artifactId>allure-testng</artifactId>
-            <version>${allure-testng.version}</version>
+            <version>${allure.version}</version>
         </dependency>
         <dependency>
             <groupId>io.qameta.allure</groupId>
             <artifactId>allure-java-commons</artifactId>
-            <version>${allure-java-commons.version}</version>
+            <version>${allure.version}</version>
         </dependency>
         <dependency>
             <groupId>io.qameta.allure</groupId>
             <artifactId>allure-commandline</artifactId>
-            <version>${allure-commandline.version}</version>
+            <version>${allure.version}</version>
         </dependency>
         <dependency>
             <groupId>org.aspectj</groupId>
@@ -89,7 +86,13 @@
         <dependency>
             <groupId>org.jbehave</groupId>
             <artifactId>jbehave-maven-plugin</artifactId>
-            <version>5.2.0</version>
+            <version>${jbehave-core.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>io.qameta.allure</groupId>
+            <artifactId>allure-jbehave5</artifactId>
+            <version>${allure.version}</version>
+            <scope>test</scope>
         </dependency>
     </dependencies>
 
@@ -103,12 +106,12 @@
                     <argLine>
                         -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/1.9.21/aspectjweaver-1.9.21.jar"
                     </argLine>
-                    <systemProperties>
+                    <systemPropertyVariables>
                         <property>
                             <name>allure.results.directory</name>
                             <value>${project.build.directory}/allure-results</value>
                         </property>
-                    </systemProperties>
+                    </systemPropertyVariables>
                     <suiteXmlFiles>
                         <suiteXmlFile>src/test/resources/${suiteXml}</suiteXmlFile>
                     </suiteXmlFiles>
@@ -150,7 +153,7 @@
             <plugin>
                 <groupId>io.qameta.allure</groupId>
                 <artifactId>allure-maven</artifactId>
-                <version>2.10.0</version>
+                <version>2.12.0</version>
                 <configuration>
                     <reportVersion>2.14.0</reportVersion>
                     <outputDirectory>${basedir}/target/allure-reports/</outputDirectory>
@@ -159,47 +162,27 @@
             <plugin>
                 <groupId>org.jbehave</groupId>
                 <artifactId>jbehave-maven-plugin</artifactId>
-                <version>5.2.0</version>
-                <executions>
-                    <execution>
-                        <id>embeddable-stories</id>
-                        <phase>integration-test</phase>
-                        <configuration>
-                            <includes>
-                                <include>**/*JBehaveTestRunner.java</include>
-                            </includes>
-                            <ignoreFailureInStories>true</ignoreFailureInStories>
-                            <ignoreFailureInView>true</ignoreFailureInView>
-                            <systemProperties>
-                                <property>
-                                    <name>java.awt.headless</name>
-                                    <value>true</value>
-                                </property>
-                            </systemProperties>
-                        </configuration>
-                        <goals>
-                            <goal>run-stories-as-embeddables</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-            <plugin>
-                <groupId>org.jbehave</groupId>
-                <artifactId>jbehave-maven-plugin</artifactId>
-                <version>5.2.0</version>
+                <version>${jbehave-core.version}</version>
                 <configuration>
                     <scope>test</scope>
                     <includes>
                         <include>**/*JBehaveTestRunner.java</include>
                     </includes>
-                    <systemProperties>
-                        <property>
-                            <name>meta.filter</name>
-                            <!--suppress UnresolvedMavenProperty -->
-                            <value>${meta.filter}</value>
-                        </property>
-                    </systemProperties>
+                    <metaFilters>
+                        <metaFilter>${meta.filter}</metaFilter>
+                    </metaFilters>
+                    <ignoreFailureInStories>true</ignoreFailureInStories>
+                    <ignoreFailureInView>true</ignoreFailureInView>
                 </configuration>
+                <executions>
+                    <execution>
+                        <id>run-stories-as-embeddables</id>
+                        <phase>integration-test</phase>
+                        <goals>
+                            <goal>run-stories-as-embeddables</goal>
+                        </goals>
+                    </execution>
+                </executions>
             </plugin>
         </plugins>
     </build>
