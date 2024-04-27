@@ -28,7 +28,6 @@ import static org.jbehave.core.io.CodeLocations.codeLocationFromClass;
 public class JBehaveTestRunner extends ConfigurableEmbedder {
 
     public Embedder embedder;
-    public WebDriver driver;
 
     @Override
     @Test
