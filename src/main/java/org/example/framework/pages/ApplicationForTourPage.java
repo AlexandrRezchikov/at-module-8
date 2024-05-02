@@ -4,7 +4,6 @@ import io.qameta.allure.Step;
 import org.example.framework.asserts.AssertsElements;
 import org.example.framework.common.DriverActions;
 import org.example.framework.enums.Colors;
-import org.example.framework.enums.ErrorMessage;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.testng.Assert;
@@ -84,11 +83,13 @@ public class ApplicationForTourPage extends BasePage {
     }
 
     @Step("Проверка ошибки")
-    public ApplicationForTourPage checkingErrorMessage() {
+    public ApplicationForTourPage checkingErrorMessage(String text) {
         AssertsElements.checkVisible(errorMessageValidating);
-        System.out.println("Текст ошибки: " + errorMessageValidating.getText());
-        AssertsElements.checkTextErrorMessages(ErrorMessage.values());
-        AssertsElements.checkColorTextError(errorMessageValidating, Colors.RED);
+        AssertsElements.validatingTextMessage(errorMessageValidating, text);
+        AssertsElements.validatingColorText(errorMessageValidating, Colors.RED);
         return this;
     }
 }
+
+//        AssertsElements.checkTextErrorMessages(ErrorMessage.values());
+//        System.out.println("Текст ошибки: " + errorMessageValidating.getText());

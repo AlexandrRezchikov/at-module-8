@@ -4,6 +4,7 @@ import org.example.framework.pages.AllPages;
 import org.jbehave.core.annotations.Given;
 import org.jbehave.core.annotations.When;
 
+import static org.example.framework.config.Config.NAME_REGION;
 import static org.example.framework.config.Config.URL;
 
 public class MainPageSteps extends AllPages {
@@ -23,5 +24,12 @@ public class MainPageSteps extends AllPages {
     @When("пользователь нажимает на кнопку найти туры")
     public void userClicksFindToursButton() {
         mainPage.clickButtonOfSearch();
+    }
+
+    @When("пользователь вводит регион и выбирает параметры для посика тура")
+    public void userEntersRegionAndSelectsTourParameters() {
+        mainPage.selectingRegion(NAME_REGION)
+                .selectingViewRecreation()
+                .selectingDate();
     }
 }

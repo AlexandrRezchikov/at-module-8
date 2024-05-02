@@ -3,6 +3,7 @@ package org.example.framework.steps;
 import org.example.framework.pages.AllPages;
 import org.jbehave.core.annotations.Then;
 import org.jbehave.core.annotations.When;
+import org.openqa.selenium.WebElement;
 
 public class ApplicationForTourPageSteps extends AllPages {
 
@@ -36,8 +37,8 @@ public class ApplicationForTourPageSteps extends AllPages {
         applicationForTourPage.sendApplication();
     }
 
-    @Then("пользователь видит сообщение что заявка отправлена")
-    public void checkingSend() {
-        applicationForTourPage.checkingErrorMessage();
+    @Then("пользователь видит ошибку с текстом $errorText")
+    public void checkingSend(String errorText) {
+        applicationForTourPage.checkingErrorMessage(errorText);
     }
 }
