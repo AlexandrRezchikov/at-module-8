@@ -37,8 +37,8 @@ public class ApplicationForTourPageSteps extends AllPages {
         applicationForTourPage.sendApplication();
     }
 
-    @Then("пользователь видит ошибку с текстом $errorText")
-    public void checkingSend(String errorText) {
-        applicationForTourPage.checkingErrorMessage(errorText);
+    @Then("пользователь видит ошибку поля $field с текстом $errorText")
+    public void checkingSend(String field, String errorText) {
+        applicationForTourPage.checkingErrorMessage(field, errorText);
     }
 }

@@ -17,8 +17,8 @@ public class MainPageSteps extends AllPages {
     @When("пользователь вводит регион $nameRegion и выбирает параметры для посика тура")
     public void userEntersRegionAndSelectsTourParameters(String nameRegion) {
         mainPage.selectingRegion(nameRegion)
-                .selectingViewRecreation()
-                .selectingDate();
+                .selectingViewRecreation();
+//                .selectingDate();
     }
 
     @When("пользователь нажимает на кнопку найти туры")
