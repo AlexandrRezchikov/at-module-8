@@ -28,10 +28,10 @@ public class MainPage extends BasePage {
     @FindBy(xpath = ".//button[contains(., 'Найти туры')]")
     private WebElement buttonSearch;
 
-    @FindBy(xpath = ".//div[@class='dayContainer']/span[@aria-label='Март 22, 2024']")
+    @FindBy(xpath = ".//div[@class='dayContainer']/span[@aria-label='Май 20, 2024']")
     private WebElement firstDateTour;
 
-    @FindBy(xpath = ".//div[@class='dayContainer']/span[@aria-label='Март 25, 2024']")
+    @FindBy(xpath = ".//div[@class='dayContainer']/span[@aria-label='Май 31, 2024']")
     private WebElement secondDateTour;
 
     @FindBy(css = ".app-header #tours-link")
@@ -80,7 +80,8 @@ public class MainPage extends BasePage {
     @Step("Выбор даты для тура")
     public MainPage selectingDate() {
         textBarDate.click();
-        waitElementIsVisible(tourDates).click();
+        firstDateTour.click();
+        secondDateTour.click();
         return this;
     }
 

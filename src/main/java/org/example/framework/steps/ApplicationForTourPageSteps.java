@@ -3,7 +3,6 @@ package org.example.framework.steps;
 import org.example.framework.pages.AllPages;
 import org.jbehave.core.annotations.Then;
 import org.jbehave.core.annotations.When;
-import org.openqa.selenium.WebElement;
 
 public class ApplicationForTourPageSteps extends AllPages {
 
@@ -28,17 +27,22 @@ public class ApplicationForTourPageSteps extends AllPages {
     }
 
     @When("пользователь заполняет поле для почты")
-    public void EmailEntering() {
+    public void emailEntering() {
         applicationForTourPage.enteringEmail();
     }
 
-    @When("пользователь нажимает на кнопу 'Отправить заяву'")
+    @When("пользователь нажимает на кнопу 'Отправить заявку'")
     public void clickButtonSend() {
         applicationForTourPage.sendApplication();
     }
 
     @Then("пользователь видит ошибку с текстом $errorText")
     public void checkingSend(String errorText) {
-        applicationForTourPage.checkingErrorMessage(errorText);
+        applicationForTourPage.checkErrorMessage(errorText);
+    }
+
+    @Then("пользователь видит ошибку поля $field с текстом $errorText")
+    public void validatingErrorMessages(String field, String errorText) {
+        applicationForTourPage.checkingErrorMessage(field, errorText);
     }
 }

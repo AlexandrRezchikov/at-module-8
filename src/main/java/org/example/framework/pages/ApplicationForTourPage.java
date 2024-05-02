@@ -4,6 +4,7 @@ import io.qameta.allure.Step;
 import org.example.framework.asserts.AssertsElements;
 import org.example.framework.common.DriverActions;
 import org.example.framework.enums.Colors;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.testng.Assert;
@@ -15,7 +16,7 @@ public class ApplicationForTourPage extends BasePage {
     @FindBy(css = ".as-input__append")
     private WebElement barOfSelectingTourDate;
 
-    @FindBy(xpath = "//li[@class='as-select__list-item']//strong[text()='3—5 мая']")
+    @FindBy(xpath = "//li[@class='as-select__list-item']//strong[text()='24—26 мая']")
     private WebElement dateOfTour;
 
     @FindBy(xpath = "//input[@name='name']")
@@ -83,13 +84,21 @@ public class ApplicationForTourPage extends BasePage {
     }
 
     @Step("Проверка ошибки")
-    public ApplicationForTourPage checkingErrorMessage(String text) {
+    public ApplicationForTourPage checkingErrorMessage(String field, String text) {
+        WebElement testField = DriverActions.getDriver()
+                .findElement(By.xpath(String.format(".//*[@class='as-input__label' and .//input[@name='%s']]", field)));
+        AssertsElements.checkVisible(testField);
+        AssertsElements.validatingColorText(testField.findElement(By.className("as-input__label-text")), Colors.RED);
+        AssertsElements.validatingTextMessage(testField.findElement(By.className("as-input__message")), text);
+        AssertsElements.validatingColorText(testField.findElement(By.className("as-input__message")), Colors.RED);
+        return this;
+    }
+
+    @Step("Проверка одного поля с ошибкой")
+    public ApplicationForTourPage checkErrorMessage(String errorText) {
         AssertsElements.checkVisible(errorMessageValidating);
-        AssertsElements.validatingTextMessage(errorMessageValidating, text);
+        AssertsElements.validatingTextMessage(errorMessageValidating, errorText);
         AssertsElements.validatingColorText(errorMessageValidating, Colors.RED);
         return this;
     }
 }
-
-//        AssertsElements.checkTextErrorMessages(ErrorMessage.values());
-//        System.out.println("Текст ошибки: " + errorMessageValidating.getText());
