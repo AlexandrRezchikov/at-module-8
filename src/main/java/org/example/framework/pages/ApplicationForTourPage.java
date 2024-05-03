@@ -55,9 +55,10 @@ public class ApplicationForTourPage extends BasePage {
 
     @Step("Заполнение поля ФИО в форме брони")
     public ApplicationForTourPage enteringName() {
-        String fullName = DataGeneration.generateFullName();
+//        String fullName = DataGeneration.generateFullName();
         CustomActions.checkAndClick(textBarName);
-        textBarName.sendKeys(fullName);
+//        textBarName.sendKeys(fullName);
+        textBarName.sendKeys("123456");
         return this;
     }
 
@@ -71,9 +72,10 @@ public class ApplicationForTourPage extends BasePage {
 
     @Step("Заполнение поля email в форме брони")
     public ApplicationForTourPage enteringEmail() {
-        String email = DataGeneration.generateEmail();
+//        String email = DataGeneration.generateEmail();
         CustomActions.checkAndClick(textBarEmail);
-        textBarEmail.sendKeys(email);
+//        textBarEmail.sendKeys(email);
+        textBarEmail.sendKeys("12345");
         return this;
     }
 
