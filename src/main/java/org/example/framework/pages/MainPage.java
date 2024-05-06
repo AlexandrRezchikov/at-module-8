@@ -28,10 +28,10 @@ public class MainPage extends BasePage {
     @FindBy(xpath = ".//button[contains(., 'Найти туры')]")
     private WebElement buttonSearch;
 
-    @FindBy(xpath = ".//div[@class='dayContainer']/span[@aria-label='Май 20, 2024']")
+    @FindBy(xpath = ".//div[@class='dayContainer']/span[@aria-current='date']")
     private WebElement firstDateTour;
 
-    @FindBy(xpath = ".//div[@class='dayContainer']/span[@aria-label='Май 31, 2024']")
+    @FindBy(xpath = "//span[@class='flatpickr-day' and not(following-sibling::span[@class='flatpickr-day'])]")
     private WebElement secondDateTour;
 
     @FindBy(css = ".app-header #tours-link")
