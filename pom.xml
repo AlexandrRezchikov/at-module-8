@@ -20,8 +20,8 @@
         <testng.version>7.4.0</testng.version>
         <selenium-java.version>4.19.1</selenium-java.version>
         <jbehave-core.version>5.2.0</jbehave-core.version>
-        <maven.compiler.source>17</maven.compiler.source>
-        <maven.compiler.target>17</maven.compiler.target>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <suiteXml>testng.xml</suiteXml>
@@ -68,26 +68,26 @@
             <artifactId>allure-testng</artifactId>
             <version>${allure.version}</version>
         </dependency>
-        <dependency>
-            <groupId>io.qameta.allure</groupId>
-            <artifactId>allure-java-commons</artifactId>
-            <version>${allure.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>io.qameta.allure</groupId>
-            <artifactId>allure-commandline</artifactId>
-            <version>${allure.version}</version>
-        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>io.qameta.allure</groupId>-->
+<!--            <artifactId>allure-java-commons</artifactId>-->
+<!--            <version>${allure.version}</version>-->
+<!--        </dependency>-->
+<!--        <dependency>-->
+<!--            <groupId>io.qameta.allure</groupId>-->
+<!--            <artifactId>allure-commandline</artifactId>-->
+<!--            <version>${allure.version}</version>-->
+<!--        </dependency>-->
         <dependency>
             <groupId>org.aspectj</groupId>
             <artifactId>aspectjweaver</artifactId>
             <version>${aspectjweaver.version}</version>
         </dependency>
-        <dependency>
-            <groupId>org.jbehave</groupId>
-            <artifactId>jbehave-maven-plugin</artifactId>
-            <version>${jbehave-core.version}</version>
-        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>org.jbehave</groupId>-->
+<!--            <artifactId>jbehave-maven-plugin</artifactId>-->
+<!--            <version>${jbehave-core.version}</version>-->
+<!--        </dependency>-->
         <dependency>
             <groupId>io.qameta.allure</groupId>
             <artifactId>allure-jbehave5</artifactId>
@@ -95,6 +95,18 @@
             <scope>test</scope>
         </dependency>
     </dependencies>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>io.qameta.allure</groupId>
+                <artifactId>allure-bom</artifactId>
+                <version>${allure.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
 
     <build>
         <plugins>
