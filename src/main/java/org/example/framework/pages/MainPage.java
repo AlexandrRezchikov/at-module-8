@@ -10,7 +10,7 @@ public class MainPage extends BasePage {
     @FindBy(xpath = "//input[@placeholder='Введите регион, место или тур' and @name='search']")
     private WebElement textBarRegion;
 
-    @FindBy(css = ".search-autocomplete-group__item1")
+    @FindBy(css = ".search-autocomplete-group__item")
     private WebElement searchResultRegion;
 
     @FindBy(xpath = "//input[@placeholder='Любой']")
