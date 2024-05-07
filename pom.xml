@@ -14,12 +14,11 @@
     <properties>
         <aspectj.version>1.9.21.1</aspectj.version>
         <maven-surefire-plugin.version>3.2.5</maven-surefire-plugin.version>
-        <allure.version>2.27.0</allure.version>
+        <allure.version>2.26.0</allure.version>
         <log4j.version>2.23.1</log4j.version>
-        <aspectjweaver.version>1.9.21</aspectjweaver.version>
         <testng.version>7.4.0</testng.version>
         <selenium-java.version>4.19.1</selenium-java.version>
-        <jbehave-core.version>5.2.0</jbehave-core.version>
+        <jbehave.version>5.2.0</jbehave.version>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -51,7 +50,7 @@
         <dependency>
             <groupId>org.jbehave</groupId>
             <artifactId>jbehave-core</artifactId>
-            <version>${jbehave-core.version}</version>
+            <version>${jbehave.version}</version>
         </dependency>
         <dependency>
             <groupId>org.apache.logging.log4j</groupId>
@@ -68,26 +67,26 @@
             <artifactId>allure-testng</artifactId>
             <version>${allure.version}</version>
         </dependency>
-<!--        <dependency>-->
-<!--            <groupId>io.qameta.allure</groupId>-->
-<!--            <artifactId>allure-java-commons</artifactId>-->
-<!--            <version>${allure.version}</version>-->
-<!--        </dependency>-->
-<!--        <dependency>-->
-<!--            <groupId>io.qameta.allure</groupId>-->
-<!--            <artifactId>allure-commandline</artifactId>-->
-<!--            <version>${allure.version}</version>-->
-<!--        </dependency>-->
+        <dependency>
+            <groupId>io.qameta.allure</groupId>
+            <artifactId>allure-java-commons</artifactId>
+            <version>${allure.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>io.qameta.allure</groupId>
+            <artifactId>allure-commandline</artifactId>
+            <version>${allure.version}</version>
+        </dependency>
         <dependency>
             <groupId>org.aspectj</groupId>
             <artifactId>aspectjweaver</artifactId>
-            <version>${aspectjweaver.version}</version>
+            <version>${aspectj.version}</version>
         </dependency>
-<!--        <dependency>-->
-<!--            <groupId>org.jbehave</groupId>-->
-<!--            <artifactId>jbehave-maven-plugin</artifactId>-->
-<!--            <version>${jbehave-core.version}</version>-->
-<!--        </dependency>-->
+        <dependency>
+            <groupId>org.jbehave</groupId>
+            <artifactId>jbehave-maven-plugin</artifactId>
+            <version>${jbehave.version}</version>
+        </dependency>
         <dependency>
             <groupId>io.qameta.allure</groupId>
             <artifactId>allure-jbehave5</artifactId>
@@ -116,7 +115,7 @@
                 <version>${maven-surefire-plugin.version}</version>
                 <configuration>
                     <argLine>
-                        -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/1.9.21/aspectjweaver-1.9.21.jar"
+                        -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar"
                     </argLine>
                     <systemPropertyVariables>
                         <property>
@@ -132,7 +131,7 @@
                     <dependency>
                         <groupId>org.aspectj</groupId>
                         <artifactId>aspectjweaver</artifactId>
-                        <version>1.9.21</version>
+                        <version>${aspectj.version}</version>
                     </dependency>
                 </dependencies>
             </plugin>
@@ -167,14 +166,14 @@
                 <artifactId>allure-maven</artifactId>
                 <version>2.12.0</version>
                 <configuration>
-                    <reportVersion>2.14.0</reportVersion>
+                    <reportVersion>${allure.version}</reportVersion>
                     <outputDirectory>${basedir}/target/allure-reports/</outputDirectory>
                 </configuration>
             </plugin>
             <plugin>
                 <groupId>org.jbehave</groupId>
                 <artifactId>jbehave-maven-plugin</artifactId>
-                <version>${jbehave-core.version}</version>
+                <version>${jbehave.version}</version>
                 <configuration>
                     <scope>test</scope>
                     <includes>
